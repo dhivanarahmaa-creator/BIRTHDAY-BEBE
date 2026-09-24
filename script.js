@@ -30,7 +30,6 @@ const progressBar = document.getElementById("progressBar");
 
 let currentStep = 0;
 let cakeReady = false;
-
 let isTransitioning = false;
 
 
@@ -273,6 +272,7 @@ function wishesHTML() {
 ========================================================= */
 
 function memoriesHTML() {
+
   const photos = photoCaptions
     .map((caption, index) => {
 
@@ -300,6 +300,7 @@ function memoriesHTML() {
       `;
     })
     .join("");
+
 
   return `
     <article class="memories story-page-enter">
@@ -335,6 +336,7 @@ function memoriesHTML() {
 ========================================================= */
 
 function cakeHTML() {
+
   return `
     <article class="cake-page story-page-enter">
 
@@ -353,7 +355,6 @@ function cakeHTML() {
         Cukup kamu dan harapan itu.
         Setelah itu... tiup lilinnya.
       </p>
-
 
       <div class="cake-scene">
 
@@ -384,14 +385,12 @@ function cakeHTML() {
 
       </div>
 
-
       <p
         id="cakeMessage"
         class="cake-message"
       >
         Bikin wish dulu, bebe 🤍
       </p>
-
 
       <button
         id="cakeButton"
@@ -411,13 +410,13 @@ function cakeHTML() {
 ========================================================= */
 
 function finalHTML() {
+
   return `
     <article class="final-page story-page-enter">
 
       <p class="story-kicker">
         bagian terakhir
       </p>
-
 
       <img
         id="finalSnoopy"
@@ -427,17 +426,14 @@ function finalHTML() {
         class="final-snoopy"
       >
 
-
       <h2 class="story-title">
         Satu pesan terakhir untuk Bebe 🤍
       </h2>
-
 
       <p class="final-message">
         Harapanku sederhana.
         Semoga umur 17 ini baik sama bebe.
       </p>
-
 
       <p class="final-small">
         Semoga bebe menemukan lebih banyak alasan untuk tersenyum,
@@ -447,11 +443,9 @@ function finalHTML() {
         semoga aku masih boleh ada di beberapa momen itu. 🤍
       </p>
 
-
       <p class="final-message">
         Selamat ulang tahun ke-17, Bebe. 🤍
       </p>
-
 
       <p class="signature">
         — Dhiva ♡
@@ -481,102 +475,43 @@ const steps = [
 
 function showStep(index, direction = "next") {
 
-  if (isTransitioning) {
-    return;
-  }
-
   index = Math.max(
     0,
     Math.min(index, steps.length - 1)
   );
 
   currentStep = index;
-
   cakeReady = false;
 
-
-  /* -----------------------------------------
-     Build next page
-  ----------------------------------------- */
-
+  /* Render halaman */
   storyContent.innerHTML = steps[currentStep]();
 
 
-  /* -----------------------------------------
-     Direction class
-  ----------------------------------------- */
-
-  const page =
-    storyContent.firstElementChild;
-
-  if (page) {
-
-    page.classList.remove(
-      "story-page-enter"
-    );
-
-    void page.offsetWidth;
-
-    page.classList.add(
-      "story-page-enter"
-    );
-
-    if (direction === "back") {
-      page.style.animationName =
-        "pageEnterBack";
-    }
-  }
-
-
-  /* -----------------------------------------
-     Progress
-  ----------------------------------------- */
-
+  /* Progress */
   stepNumber.textContent =
     String(currentStep + 1).padStart(2, "0");
 
-
-  const progress =
-    ((currentStep + 1) / steps.length) * 100;
-
   progressBar.style.width =
-    `${progress}%`;
+    `${((currentStep + 1) / steps.length) * 100}%`;
 
 
-  /* -----------------------------------------
-     Back button
-  ----------------------------------------- */
-
-  if (currentStep === 0) {
-
-    backButton.style.visibility =
-      "hidden";
-
-  } else {
-
-    backButton.style.visibility =
-      "visible";
-  }
+  /* Back button */
+  backButton.style.visibility =
+    currentStep === 0
+      ? "hidden"
+      : "visible";
 
 
-  /* -----------------------------------------
-     Next button
-  ----------------------------------------- */
-
+  /* Next button */
   if (currentStep === steps.length - 1) {
 
     nextButton.textContent =
       "Ulangi dari awal ↺";
 
     nextButton.style.display =
-      "inline-block";
+      "inline-flex";
 
   } else if (currentStep === 3) {
-
-    /*
-      Cake page has its own button.
-      So hide navigation button.
-    */
 
     nextButton.style.display =
       "none";
@@ -587,24 +522,37 @@ function showStep(index, direction = "next") {
       "Lanjut →";
 
     nextButton.style.display =
-      "inline-block";
+      "inline-flex";
   }
 
 
-  /* -----------------------------------------
-     Scroll story to top
-  ----------------------------------------- */
+  /* Animation */
+  const page =
+    storyContent.firstElementChild;
 
-  storyContent.scrollTo({
-    top: 0,
-    behavior: "auto"
-  });
+  if (page) {
+
+    page.classList.remove(
+      "story-page-enter",
+      "story-page-enter-back",
+      "story-page-exit"
+    );
+
+    void page.offsetWidth;
+
+    page.classList.add(
+      direction === "back"
+        ? "story-page-enter-back"
+        : "story-page-enter"
+    );
+  }
 
 
-  /* -----------------------------------------
-     Page-specific setup
-  ----------------------------------------- */
+  /* Scroll to top */
+  storyContent.scrollTop = 0;
 
+
+  /* Page-specific setup */
   if (currentStep === 2) {
     setupPhotoFallbacks();
   }
@@ -614,19 +562,6 @@ function showStep(index, direction = "next") {
   }
 
   setupSnoopyFallbacks();
-
-
-  /* -----------------------------------------
-     Tiny delayed animation trigger
-  ----------------------------------------- */
-
-  requestAnimationFrame(() => {
-
-    if (page) {
-      page.classList.add("page-ready");
-    }
-
-  });
 }
 
 
@@ -637,9 +572,7 @@ function showStep(index, direction = "next") {
 function setupPhotoFallbacks() {
 
   const images =
-    document.querySelectorAll(
-      "[data-photo]"
-    );
+    document.querySelectorAll("[data-photo]");
 
 
   images.forEach((img) => {
@@ -663,51 +596,31 @@ function setupPhotoFallbacks() {
     const paths = [];
 
 
-    /*
-      Main expected location
-    */
-
     extensions.forEach((ext) => {
-
       paths.push(
         `images/photo-1 (${number}).${ext}`
       );
-
     });
 
 
-    /*
-      Alternative name
-    */
-
     extensions.forEach((ext) => {
-
       paths.push(
         `images/photos-1 (${number}).${ext}`
       );
-
     });
 
 
-    /*
-      Root-level fallback
-    */
-
     extensions.forEach((ext) => {
-
       paths.push(
         `photo-1 (${number}).${ext}`
       );
-
     });
 
 
     extensions.forEach((ext) => {
-
       paths.push(
         `photos-1 (${number}).${ext}`
       );
-
     });
 
 
@@ -731,13 +644,10 @@ function setupPhotoFallbacks() {
       }
 
 
-      const currentPath =
+      img.src =
         paths[attempt];
 
       attempt++;
-
-
-      img.src = currentPath;
     }
 
 
@@ -770,9 +680,7 @@ function setupPhotoFallbacks() {
 function setupSnoopyFallbacks() {
 
   const snoopys =
-    document.querySelectorAll(
-      "[data-snoopy]"
-    );
+    document.querySelectorAll("[data-snoopy]");
 
 
   snoopys.forEach((img) => {
@@ -819,14 +727,11 @@ function setupSnoopyFallbacks() {
         paths[attempt];
 
       attempt++;
-
     }
 
 
     img.onerror = () => {
-
       tryNext();
-
     };
 
 
@@ -843,19 +748,13 @@ function setupSnoopyFallbacks() {
 function setupCake() {
 
   const cake =
-    document.getElementById(
-      "birthdayCake"
-    );
+    document.getElementById("birthdayCake");
 
   const button =
-    document.getElementById(
-      "cakeButton"
-    );
+    document.getElementById("cakeButton");
 
   const message =
-    document.getElementById(
-      "cakeMessage"
-    );
+    document.getElementById("cakeMessage");
 
 
   if (
@@ -876,18 +775,8 @@ function setupCake() {
         cakeReady = true;
 
 
-        /* ---------------------------------
-           Blow candle
-        --------------------------------- */
+        cake.classList.add("blown");
 
-        cake.classList.add(
-          "blown"
-        );
-
-
-        /* ---------------------------------
-           Change message
-        --------------------------------- */
 
         message.style.opacity = "0";
 
@@ -908,27 +797,14 @@ function setupCake() {
         }, 220);
 
 
-        /* ---------------------------------
-           Change button
-        --------------------------------- */
-
         button.textContent =
           "Lanjut ke pesan terakhir →";
 
-
-        /* ---------------------------------
-           Confetti
-        --------------------------------- */
 
         makeConfetti();
 
 
       } else {
-
-        /*
-          Second click:
-          move to final page
-        */
 
         showStep(
           4,
@@ -966,9 +842,7 @@ function makeConfetti() {
   ) {
 
     const confetti =
-      document.createElement(
-        "span"
-      );
+      document.createElement("span");
 
 
     confetti.className =
@@ -982,8 +856,7 @@ function makeConfetti() {
     confetti.style.background =
       colors[
         Math.floor(
-          Math.random() *
-          colors.length
+          Math.random() * colors.length
         )
       ];
 
@@ -1010,9 +883,7 @@ function makeConfetti() {
 
 
     setTimeout(() => {
-
       confetti.remove();
-
     }, 2500);
 
   }
@@ -1025,15 +896,9 @@ function makeConfetti() {
 
 function openStory() {
 
-  story.classList.remove(
-    "closing"
-  );
+  story.classList.remove("closing");
 
-
-  story.classList.add(
-    "open"
-  );
-
+  story.classList.add("open");
 
   story.setAttribute(
     "aria-hidden",
@@ -1041,24 +906,14 @@ function openStory() {
   );
 
 
-  reopenStory.classList.remove(
-    "show"
-  );
+  reopenStory.classList.remove("show");
 
-
-  /*
-    Always start from first page
-  */
 
   showStep(
     0,
     "next"
   );
 
-
-  /*
-    Music
-  */
 
   birthdayMusic.volume = 0.55;
 
@@ -1071,18 +926,9 @@ function openStory() {
     playPromise !== undefined
   ) {
 
-    playPromise.catch(() => {
-
-      /*
-        Browser may block autoplay.
-        Music will still work after
-        another user interaction.
-      */
-
-    });
+    playPromise.catch(() => {});
 
   }
-
 }
 
 
@@ -1092,9 +938,7 @@ function openStory() {
 
 function closeStoryPanel() {
 
-  story.classList.remove(
-    "open"
-  );
+  story.classList.remove("open");
 
   story.setAttribute(
     "aria-hidden",
@@ -1102,10 +946,7 @@ function closeStoryPanel() {
   );
 
 
-  reopenStory.classList.add(
-    "show"
-  );
-
+  reopenStory.classList.add("show");
 }
 
 
@@ -1120,14 +961,9 @@ function goNext() {
   }
 
 
-  /*
-    Final page:
-    restart from beginning
-  */
-
+  /* Final → kembali awal */
   if (
-    currentStep ===
-    steps.length - 1
+    currentStep === steps.length - 1
   ) {
 
     showStep(
@@ -1139,11 +975,7 @@ function goNext() {
   }
 
 
-  /*
-    Cake page is controlled
-    by its own button.
-  */
-
+  /* Cake punya tombol sendiri */
   if (currentStep === 3) {
     return;
   }
@@ -1185,13 +1017,10 @@ function goBack() {
 
 function changeStepWithTransition(
   targetIndex,
-  direction
+  direction = "next"
 ) {
 
-  if (
-    targetIndex < 0 ||
-    targetIndex >= steps.length
-  ) {
+  if (isTransitioning) {
     return;
   }
 
@@ -1203,6 +1032,11 @@ function changeStepWithTransition(
     storyContent.firstElementChild;
 
 
+  /*
+    Kalau CSS exit tersedia,
+    gunakan animasi keluar.
+  */
+
   if (oldPage) {
 
     oldPage.classList.add(
@@ -1212,11 +1046,6 @@ function changeStepWithTransition(
   }
 
 
-  /*
-    Short exit animation,
-    then replace content.
-  */
-
   setTimeout(() => {
 
     showStep(
@@ -1224,15 +1053,9 @@ function changeStepWithTransition(
       direction
     );
 
-
-    setTimeout(() => {
-
-      isTransitioning = false;
-
-    }, 650);
+    isTransitioning = false;
 
   }, 240);
-
 }
 
 
