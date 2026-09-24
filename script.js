@@ -25,6 +25,28 @@ const progressBar = document.getElementById("progressBar");
 
 
 /* =========================================================
+   OPENING DOM
+========================================================= */
+
+const openingScreen =
+  document.getElementById("openingScreen");
+
+const birthdayPassword =
+  document.getElementById("birthdayPassword");
+
+const passwordButton =
+  document.getElementById("passwordButton");
+
+const passwordMessage =
+  document.getElementById("passwordMessage");
+
+const enterBirthday =
+  document.getElementById("enterBirthday");
+
+const CORRECT_PASSWORD = "2621";
+
+
+/* =========================================================
    STATE
 ========================================================= */
 
@@ -34,7 +56,7 @@ let isTransitioning = false;
 
 
 /* =========================================================
-   21 PHOTO CAPTIONS
+   PHOTO CAPTIONS
 ========================================================= */
 
 const photoCaptions = [
@@ -94,7 +116,7 @@ function letterHTML() {
 
         <p>
           Hari ini kamu resmi bertambah umur lagi.
-          Dan entah kenapa, aku ikut seneng banget lihat kamu sampai di umur ini.
+          Dan entah kenapa, aku ikut seneng banget lihat bebe sampai di umur ini.
           Rasanya baru kemarin kita masih ngobrol tentang hal-hal random,
           ketawa karena sesuatu yang sebenarnya nggak lucu-lucu amat,
           dan sekarang tiba-tiba kamu sudah 17 tahun.
@@ -105,7 +127,7 @@ function letterHTML() {
           Terima kasih karena selama ini sudah menjadi seseorang
           yang bisa membuat hari-hariku terasa lebih berwarna.
           Terima kasih untuk semua cerita, perhatian,
-          candaan, waktu, dan hal-hal kecil yang mungkin menurut kamu biasa saja,
+          candaan, waktu, dan hal-hal kecil yang mungkin menurut bebe biasa saja,
           tapi sebenarnya berarti buat aku.
         </p>
 
@@ -301,7 +323,6 @@ function memoriesHTML() {
     })
     .join("");
 
-
   return `
     <article class="memories story-page-enter">
 
@@ -312,7 +333,7 @@ function memoriesHTML() {
         </p>
 
         <h2 class="story-title">
-          21 potongan kecil dari kita 📸
+          21 potongan kecil dari bebe dan kita 📸
         </h2>
 
         <p class="story-intro">
@@ -350,9 +371,9 @@ function cakeHTML() {
 
       <p class="story-intro">
         Tutup mata sebentar, bebe.
-        Pikirkan satu hal yang paling kamu inginkan.
+        Pikirkan satu hal yang paling bebe inginkan.
         Nggak perlu bilang ke siapa-siapa.
-        Cukup kamu dan harapan itu.
+        Cukup bebe dan harapan itu.
         Setelah itu... tiup lilinnya.
       </p>
 
@@ -483,26 +504,20 @@ function showStep(index, direction = "next") {
   currentStep = index;
   cakeReady = false;
 
-  /* Render halaman */
-  storyContent.innerHTML = steps[currentStep]();
+  storyContent.innerHTML =
+    steps[currentStep]();
 
-
-  /* Progress */
   stepNumber.textContent =
     String(currentStep + 1).padStart(2, "0");
 
   progressBar.style.width =
     `${((currentStep + 1) / steps.length) * 100}%`;
 
-
-  /* Back button */
   backButton.style.visibility =
     currentStep === 0
       ? "hidden"
       : "visible";
 
-
-  /* Next button */
   if (currentStep === steps.length - 1) {
 
     nextButton.textContent =
@@ -525,8 +540,6 @@ function showStep(index, direction = "next") {
       "inline-flex";
   }
 
-
-  /* Animation */
   const page =
     storyContent.firstElementChild;
 
@@ -547,12 +560,8 @@ function showStep(index, direction = "next") {
     );
   }
 
+  story.scrollTop = 0;
 
-  /* Scroll to top */
-  storyContent.scrollTop = 0;
-
-
-  /* Page-specific setup */
   if (currentStep === 2) {
     setupPhotoFallbacks();
   }
@@ -574,12 +583,10 @@ function setupPhotoFallbacks() {
   const images =
     document.querySelectorAll("[data-photo]");
 
-
   images.forEach((img) => {
 
     const number =
       img.dataset.photo;
-
 
     const extensions = [
       "jpg",
@@ -592,9 +599,7 @@ function setupPhotoFallbacks() {
       "JPE"
     ];
 
-
     const paths = [];
-
 
     extensions.forEach((ext) => {
       paths.push(
@@ -602,13 +607,11 @@ function setupPhotoFallbacks() {
       );
     });
 
-
     extensions.forEach((ext) => {
       paths.push(
         `images/photos-1 (${number}).${ext}`
       );
     });
-
 
     extensions.forEach((ext) => {
       paths.push(
@@ -616,16 +619,13 @@ function setupPhotoFallbacks() {
       );
     });
 
-
     extensions.forEach((ext) => {
       paths.push(
         `photos-1 (${number}).${ext}`
       );
     });
 
-
     let attempt = 0;
-
 
     function tryNextImage() {
 
@@ -643,13 +643,11 @@ function setupPhotoFallbacks() {
         return;
       }
 
-
       img.src =
         paths[attempt];
 
       attempt++;
     }
-
 
     img.onload = () => {
 
@@ -659,13 +657,9 @@ function setupPhotoFallbacks() {
 
     };
 
-
     img.onerror = () => {
-
       tryNextImage();
-
     };
-
 
     tryNextImage();
 
@@ -682,8 +676,15 @@ function setupSnoopyFallbacks() {
   const snoopys =
     document.querySelectorAll("[data-snoopy]");
 
-
   snoopys.forEach((img) => {
+
+    if (
+      img.dataset.fallbackReady === "true"
+    ) {
+      return;
+    }
+
+    img.dataset.fallbackReady = "true";
 
     const extensions = [
       "png",
@@ -696,21 +697,15 @@ function setupSnoopyFallbacks() {
       "JPEG"
     ];
 
-
     const paths = [];
 
-
     extensions.forEach((ext) => {
-
       paths.push(
         `images/snoopy-birthday.${ext}`
       );
-
     });
 
-
     let attempt = 0;
-
 
     function tryNext() {
 
@@ -722,18 +717,15 @@ function setupSnoopyFallbacks() {
         return;
       }
 
-
       img.src =
         paths[attempt];
 
       attempt++;
     }
 
-
     img.onerror = () => {
       tryNext();
     };
-
 
     tryNext();
 
@@ -756,7 +748,6 @@ function setupCake() {
   const message =
     document.getElementById("cakeMessage");
 
-
   if (
     !cake ||
     !button ||
@@ -764,7 +755,6 @@ function setupCake() {
   ) {
     return;
   }
-
 
   button.addEventListener(
     "click",
@@ -774,15 +764,12 @@ function setupCake() {
 
         cakeReady = true;
 
-
         cake.classList.add("blown");
-
 
         message.style.opacity = "0";
 
         message.style.transform =
           "translateY(5px)";
-
 
         setTimeout(() => {
 
@@ -796,13 +783,10 @@ function setupCake() {
 
         }, 220);
 
-
         button.textContent =
           "Lanjut ke pesan terakhir →";
 
-
         makeConfetti();
-
 
       } else {
 
@@ -822,7 +806,7 @@ function setupCake() {
    CONFETTI
 ========================================================= */
 
-function makeConfetti() {
+function makeConfetti(amount = 42) {
 
   const colors = [
     "#73c9ee",
@@ -830,10 +814,6 @@ function makeConfetti() {
     "#ffe58c",
     "#ffffff"
   ];
-
-
-  const amount = 42;
-
 
   for (
     let i = 0;
@@ -844,14 +824,11 @@ function makeConfetti() {
     const confetti =
       document.createElement("span");
 
-
     confetti.className =
       "confetti";
 
-
     confetti.style.left =
       `${Math.random() * 100}%`;
-
 
     confetti.style.background =
       colors[
@@ -860,31 +837,22 @@ function makeConfetti() {
         )
       ];
 
-
     confetti.style.animationDelay =
-      `${Math.random() * 0.35}s`;
-
-
-    confetti.style.transform =
-      `rotate(${Math.random() * 360}deg)`;
-
+      `${Math.random() * .35}s`;
 
     confetti.style.width =
       `${6 + Math.random() * 6}px`;
 
-
     confetti.style.height =
       `${10 + Math.random() * 8}px`;
-
 
     document.body.appendChild(
       confetti
     );
 
-
     setTimeout(() => {
       confetti.remove();
-    }, 2500);
+    }, 3500);
 
   }
 }
@@ -896,8 +864,6 @@ function makeConfetti() {
 
 function openStory() {
 
-  story.classList.remove("closing");
-
   story.classList.add("open");
 
   story.setAttribute(
@@ -905,28 +871,25 @@ function openStory() {
     "false"
   );
 
-
   reopenStory.classList.remove("show");
-
 
   showStep(
     0,
     "next"
   );
 
-
-  birthdayMusic.volume = 0.55;
-
+  birthdayMusic.volume = .55;
 
   const playPromise =
     birthdayMusic.play();
-
 
   if (
     playPromise !== undefined
   ) {
 
-    playPromise.catch(() => {});
+    playPromise.catch(
+      () => {}
+    );
 
   }
 }
@@ -945,13 +908,12 @@ function closeStoryPanel() {
     "true"
   );
 
-
   reopenStory.classList.add("show");
 }
 
 
 /* =========================================================
-   NEXT STEP
+   NEXT
 ========================================================= */
 
 function goNext() {
@@ -960,10 +922,9 @@ function goNext() {
     return;
   }
 
-
-  /* Final → kembali awal */
   if (
-    currentStep === steps.length - 1
+    currentStep ===
+    steps.length - 1
   ) {
 
     showStep(
@@ -974,12 +935,9 @@ function goNext() {
     return;
   }
 
-
-  /* Cake punya tombol sendiri */
   if (currentStep === 3) {
     return;
   }
-
 
   changeStepWithTransition(
     currentStep + 1,
@@ -989,7 +947,7 @@ function goNext() {
 
 
 /* =========================================================
-   PREVIOUS STEP
+   BACK
 ========================================================= */
 
 function goBack() {
@@ -998,11 +956,9 @@ function goBack() {
     return;
   }
 
-
   if (currentStep <= 0) {
     return;
   }
-
 
   changeStepWithTransition(
     currentStep - 1,
@@ -1012,7 +968,7 @@ function goBack() {
 
 
 /* =========================================================
-   SMOOTH PAGE TRANSITION
+   TRANSITION
 ========================================================= */
 
 function changeStepWithTransition(
@@ -1024,18 +980,10 @@ function changeStepWithTransition(
     return;
   }
 
-
   isTransitioning = true;
-
 
   const oldPage =
     storyContent.firstElementChild;
-
-
-  /*
-    Kalau CSS exit tersedia,
-    gunakan animasi keluar.
-  */
 
   if (oldPage) {
 
@@ -1044,7 +992,6 @@ function changeStepWithTransition(
     );
 
   }
-
 
   setTimeout(() => {
 
@@ -1055,7 +1002,7 @@ function changeStepWithTransition(
 
     isTransitioning = false;
 
-  }, 240);
+  }, 220);
 }
 
 
@@ -1068,24 +1015,20 @@ openSurprise.addEventListener(
   openStory
 );
 
-
 closeStory.addEventListener(
   "click",
   closeStoryPanel
 );
-
 
 reopenStory.addEventListener(
   "click",
   openStory
 );
 
-
 nextButton.addEventListener(
   "click",
   goNext
 );
-
 
 backButton.addEventListener(
   "click",
@@ -1094,7 +1037,7 @@ backButton.addEventListener(
 
 
 /* =========================================================
-   ESCAPE KEY
+   ESCAPE
 ========================================================= */
 
 document.addEventListener(
@@ -1111,6 +1054,194 @@ document.addEventListener(
     }
 
   }
+);
+
+
+/* =========================================================
+   OPENING PASSWORD
+========================================================= */
+
+function checkBirthdayPassword() {
+
+  const entered =
+    birthdayPassword.value.trim();
+
+  if (
+    entered ===
+    CORRECT_PASSWORD
+  ) {
+
+    passwordMessage.textContent =
+      "Benarrr! 🥹🤍";
+
+    passwordMessage.style.color =
+      "#4c9ab8";
+
+    birthdayPassword.disabled = true;
+
+    passwordButton.disabled = true;
+
+    openingScreen.classList.add(
+      "celebrating"
+    );
+
+    makeOpeningConfetti();
+
+  } else {
+
+    passwordMessage.textContent =
+      "Eits, bukan itu hehe 😭 coba lagi.";
+
+    passwordMessage.style.color =
+      "#d56d92";
+
+    birthdayPassword.value = "";
+
+    birthdayPassword.focus();
+
+    birthdayPassword.animate(
+      [
+        {
+          transform:
+            "translateX(0)"
+        },
+        {
+          transform:
+            "translateX(-7px)"
+        },
+        {
+          transform:
+            "translateX(7px)"
+        },
+        {
+          transform:
+            "translateX(-5px)"
+        },
+        {
+          transform:
+            "translateX(0)"
+        }
+      ],
+      {
+        duration: 350
+      }
+    );
+
+  }
+}
+
+
+/* =========================================================
+   OPENING CONFETTI
+========================================================= */
+
+function makeOpeningConfetti() {
+
+  const colors = [
+    "#73c9ee",
+    "#ff9fc2",
+    "#ffe58c",
+    "#ffffff",
+    "#9bdcf4"
+  ];
+
+  for (
+    let i = 0;
+    i < 75;
+    i++
+  ) {
+
+    const confetti =
+      document.createElement("span");
+
+    confetti.className =
+      "confetti";
+
+    confetti.style.left =
+      `${Math.random() * 100}%`;
+
+    confetti.style.top =
+      `${-20 - Math.random() * 100}px`;
+
+    confetti.style.background =
+      colors[
+        Math.floor(
+          Math.random() *
+          colors.length
+        )
+      ];
+
+    confetti.style.width =
+      `${5 + Math.random() * 7}px`;
+
+    confetti.style.height =
+      `${8 + Math.random() * 9}px`;
+
+    confetti.style.animationDelay =
+      `${Math.random() * .6}s`;
+
+    confetti.style.animationDuration =
+      `${2 + Math.random() * 1.4}s`;
+
+    document.body.appendChild(
+      confetti
+    );
+
+    setTimeout(() => {
+      confetti.remove();
+    }, 4000);
+
+  }
+}
+
+
+/* =========================================================
+   ENTER MAIN WEBSITE
+========================================================= */
+
+function enterMainWebsite() {
+
+  openingScreen.classList.add(
+    "leave"
+  );
+
+  setTimeout(() => {
+
+    openingScreen.style.display =
+      "none";
+
+  }, 850);
+
+}
+
+
+/* =========================================================
+   PASSWORD EVENTS
+========================================================= */
+
+passwordButton.addEventListener(
+  "click",
+  checkBirthdayPassword
+);
+
+birthdayPassword.addEventListener(
+  "keydown",
+  (event) => {
+
+    if (
+      event.key === "Enter"
+    ) {
+
+      checkBirthdayPassword();
+
+    }
+
+  }
+);
+
+enterBirthday.addEventListener(
+  "click",
+  enterMainWebsite
 );
 
 
@@ -1134,7 +1265,7 @@ document.addEventListener(
       birthdayMusic.paused
     ) {
 
-      birthdayMusic.volume = 0.55;
+      birthdayMusic.volume = .55;
 
       birthdayMusic.play().catch(
         () => {}
@@ -1142,8 +1273,5 @@ document.addEventListener(
 
     }
 
-  },
-  {
-    once: false
   }
 );
