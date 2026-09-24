@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Untuk Bebe — 21 September 2026</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main id="home" class="home">
+    <div class="sky-glow"></div>
+    <div class="cloud cloud-one"></div>
+    <div class="cloud cloud-two"></div>
+
+    <section class="welcome">
+
+      <p class="small-note">21 September 2026</p>
+
+      <img
+        id="welcomeSnoopy"
+        src="images/snoopy-birthday.png"
+        data-snoopy
+        alt="Snoopy membawa kue ulang tahun"
+        class="snoopy"
+      >
+
+      <p class="tiny-label">sedikit kejutan buat kamu</p>
+
+      <h1>Hey, Bebe! 🤍</h1>
+
+      <p class="welcome-text">
+        Hari ini ada sesuatu kecil yang aku siapin khusus buat kamu.
+      </p>
+
+      <button
+        id="openSurprise"
+        class="main-button"
+        type="button"
+      >
+        Buka kejutan 🎁
+      </button>
+
+      <p class="made-by">
+        dibuat dengan sayang oleh Bubu ♡
+      </p>
+
+    </section>
+  </main>
+
+
+  <!-- STORY -->
+  <section
+    id="story"
+    class="story"
+    aria-hidden="true"
+  >
+
+    <div class="story-top">
+
+      <button
+        id="closeStory"
+        class="icon-button"
+        type="button"
+        aria-label="Tutup"
+      >
+        ×
+      </button>
+
+      <div class="progress">
+        <span id="stepNumber">01</span>
+
+        <span class="progress-line">
+          <i id="progressBar"></i>
+        </span>
+
+        <span>05</span>
+      </div>
+
+    </div>
+
+
+    <div
+      id="storyContent"
+      class="story-content"
+    ></div>
+
+
+    <div class="story-navigation">
+
+      <button
+        id="backButton"
+        class="text-button"
+        type="button"
+      >
+        ← Kembali
+      </button>
+
+      <button
+        id="nextButton"
+        class="main-button small"
+        type="button"
+      >
+        Lanjut →
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <button
+    id="reopenStory"
+    class="reopen-button"
+    type="button"
+  >
+    Buka lagi ♡
+  </button>
+
+
+  <!-- MUSIK -->
+  <audio
+    id="birthdayMusic"
+    loop
+    preload="auto"
+  >
+    <source
+      src="music/song 1 (begin again).mp3"
+      type="audio/mpeg"
+    >
+  </audio>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
