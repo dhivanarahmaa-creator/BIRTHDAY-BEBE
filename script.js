@@ -1,2140 +1,1326 @@
-* {
-  box-sizing: border-box;
-}
-
-:root {
-  --blue-dark: #21617f;
-  --blue: #3195bd;
-  --text: #587c8d;
-  --pink: #f58db6;
-  --yellow: #ffe18a;
-}
-
-html,
-body {
-  margin: 0;
-  min-height: 100%;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--text);
-
-  background:
-    radial-gradient(
-      circle at 50% 5%,
-      #ffffff 0,
-      #eaf9ff 28%,
-      transparent 55%
-    ),
-    linear-gradient(
-      135deg,
-      #eaf9ff 0%,
-      #cceefa 48%,
-      #b8e3f5 100%
-    );
-
-  overflow-x: hidden;
-}
-
-button {
-  font: inherit;
-}
-
-
-/* =====================================================
-   GLOBAL FLOATING DECOR
-===================================================== */
-
-.floating-decor {
-  position: fixed;
-  z-index: 1;
-  pointer-events: none;
-  color: rgba(255, 255, 255, 0.72);
-  font-family: Georgia, serif;
-  animation: floatDecor 7s ease-in-out infinite;
-}
-
-.decor-1 {
-  top: 18%;
-  left: 8%;
-  font-size: 18px;
-  animation-delay: -1s;
-}
-
-.decor-2 {
-  top: 34%;
-  right: 10%;
-  font-size: 24px;
-  animation-delay: -3s;
-}
-
-.decor-3 {
-  bottom: 20%;
-  left: 16%;
-  font-size: 15px;
-  animation-delay: -5s;
-}
-
-.decor-4 {
-  top: 12%;
-  right: 25%;
-  font-size: 28px;
-  animation-delay: -2s;
-}
-
-.decor-5 {
-  bottom: 14%;
-  right: 17%;
-  font-size: 19px;
-  animation-delay: -4s;
-}
-
-@keyframes floatDecor {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
-
-  50% {
-    transform: translate3d(0, -18px, 0) rotate(8deg);
-  }
-}
-
-
-/* =====================================================
-   HOME
-===================================================== */
-
-.home {
-  min-height: 100vh;
-  min-height: 100svh;
-
-  position: relative;
-
-  display: grid;
-  place-items: center;
-
-  overflow: hidden;
-
-  padding: 32px 20px;
-}
-
-.sky-glow {
-  position: absolute;
-
-  width: 620px;
-  height: 620px;
-
-  border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.42);
-
-  filter: blur(40px);
-
-  top: -260px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  animation: glowPulse 6s ease-in-out infinite;
-}
-
-@keyframes glowPulse {
-  0%,
-  100% {
-    opacity: 0.55;
-    transform: translateX(-50%) scale(1);
-  }
-
-  50% {
-    opacity: 0.85;
-    transform: translateX(-50%) scale(1.08);
-  }
-}
-
-
-/* =====================================================
-   CLOUDS
-===================================================== */
-
-.cloud {
-  position: absolute;
-
-  width: 220px;
-  height: 70px;
-
-  border-radius: 100px;
-
-  background: rgba(255, 255, 255, 0.34);
-
-  filter: blur(1px);
-
-  pointer-events: none;
-}
-
-.cloud::before,
-.cloud::after {
-  content: "";
-
-  position: absolute;
-
-  border-radius: 50%;
-
-  background: inherit;
-}
-
-.cloud::before {
-  width: 90px;
-  height: 90px;
-
-  left: 35px;
-  bottom: 10px;
-}
-
-.cloud::after {
-  width: 115px;
-  height: 115px;
-
-  right: 28px;
-  bottom: 0;
-}
-
-.cloud-one {
-  left: -70px;
-  bottom: 15%;
-
-  animation: cloudMoveOne 18s ease-in-out infinite;
-}
-
-.cloud-two {
-  right: -70px;
-  top: 16%;
-
-  transform: scale(0.8);
-
-  animation: cloudMoveTwo 22s ease-in-out infinite;
-}
-
-@keyframes cloudMoveOne {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-
-  50% {
-    transform: translateX(55px);
-  }
-}
-
-@keyframes cloudMoveTwo {
-  0%,
-  100% {
-    transform: scale(0.8) translateX(0);
-  }
-
-  50% {
-    transform: scale(0.8) translateX(-60px);
-  }
-}
-
-
-/* =====================================================
-   BUBBLES
-===================================================== */
-
-.bubble {
-  position: absolute;
-
-  border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.28);
-
-  border: 1px solid rgba(255, 255, 255, 0.25);
-
-  pointer-events: none;
-
-  animation: bubbleFloat 8s ease-in-out infinite;
-}
-
-.bubble-1 {
-  width: 24px;
-  height: 24px;
-
-  left: 14%;
-  top: 22%;
-
-  animation-delay: -2s;
-}
-
-.bubble-2 {
-  width: 13px;
-  height: 13px;
-
-  right: 17%;
-  top: 29%;
-
-  animation-delay: -4s;
-}
-
-.bubble-3 {
-  width: 34px;
-  height: 34px;
-
-  left: 20%;
-  bottom: 16%;
-
-  animation-delay: -6s;
-}
-
-.bubble-4 {
-  width: 18px;
-  height: 18px;
-
-  right: 12%;
-  bottom: 24%;
-
-  animation-delay: -1s;
-}
-
-@keyframes bubbleFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 0.45;
-  }
-
-  50% {
-    transform: translateY(-25px);
-    opacity: 0.8;
-  }
-}
-
-
-/* =====================================================
-   WELCOME
-===================================================== */
-
-.welcome {
-  width: min(760px, 100%);
-
-  position: relative;
-
-  z-index: 2;
-
-  text-align: center;
-
-  animation: welcomeEntrance 1.15s cubic-bezier(0.22, 1, 0.36, 1)
-    both;
-}
-
-@keyframes welcomeEntrance {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.97);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.small-note,
-.tiny-label,
-.made-by {
-  margin: 0;
-}
-
-.small-note {
-  font-size: 13px;
-
-  letter-spacing: 0.18em;
-
-  text-transform: uppercase;
-
-  color: #4c8da8;
-
-  animation: fadeUp 0.8s 0.15s both;
-}
-
-.tiny-label {
-  margin-top: 10px;
-
-  font-size: 13px;
-
-  letter-spacing: 0.13em;
-
-  text-transform: uppercase;
-
-  color: #5f91a5;
-
-  animation: fadeUp 0.8s 0.45s both;
-}
-
-
-/* =====================================================
-   SNOOPY
-===================================================== */
-
-.snoopy,
-.final-snoopy {
-  display: block;
-
-  width: min(370px, 75vw);
-
-  max-height: 330px;
-
-  object-fit: contain;
-
-  margin: 12px auto 0;
-
-  background: transparent;
-
-  mix-blend-mode: multiply;
-
-  filter:
-    contrast(1.04)
-    saturate(1.04)
-    drop-shadow(
-      0 15px 18px
-      rgba(34, 103, 132, 0.10)
-    );
-
-  animation:
-    snoopyEntrance 1s 0.25s both,
-    snoopyFloat 5s 1.3s ease-in-out infinite;
-}
-
-@keyframes snoopyEntrance {
-  from {
-    opacity: 0;
-    transform: translateY(25px) scale(0.88) rotate(-3deg);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1) rotate(0);
-  }
-}
-
-@keyframes snoopyFloat {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
-
-  50% {
-    transform: translateY(-10px) rotate(1deg);
-  }
-}
-
-.welcome h1 {
-  margin: 10px 0;
-
-  color: var(--blue-dark);
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size: clamp(52px, 9vw, 86px);
-
-  line-height: 0.98;
-
-  letter-spacing: -0.045em;
-
-  animation: titleEntrance 0.9s 0.55s both;
-}
-
-@keyframes titleEntrance {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.welcome-text {
-  max-width: 520px;
-
-  margin: 0 auto 25px;
-
-  font-size: 17px;
-
-  line-height: 1.7;
-
-  animation: fadeUp 0.8s 0.7s both;
-}
-
-
-/* =====================================================
-   BUTTON
-===================================================== */
-
-.main-button {
-  border: 0;
-
-  border-radius: 999px;
-
-  background: var(--blue);
-
-  color: white;
-
-  padding: 15px 25px;
-
-  font-weight: 700;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 12px 28px
-    rgba(34, 130, 169, 0.22);
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
-
-  position: relative;
-
-  z-index: 50;
-
-  animation: buttonEntrance 0.8s 0.85s both;
-}
-
-@keyframes buttonEntrance {
-  from {
-    opacity: 0;
-    transform: translateY(15px) scale(0.95);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.main-button:hover {
-  transform: translateY(-3px) scale(1.02);
-
-  box-shadow:
-    0 15px 32px
-    rgba(34, 130, 169, 0.28);
-
-  background: #2789b1;
-}
-
-.main-button:active {
-  transform: translateY(0) scale(0.98);
-}
-
-.main-button.small {
-  padding: 13px 23px;
-}
-
-.made-by {
-  margin-top: 17px;
-
-  font-size: 13px;
-
-  color: #6e94a3;
-
-  animation: fadeUp 0.8s 1s both;
-}
-
-
-/* =====================================================
-   STORY
-===================================================== */
-
-.story {
-  position: fixed;
-
-  inset: 0;
-
-  z-index: 100;
-
-  display: none;
-
-  flex-direction: column;
-
-  background:
-    radial-gradient(
-      circle at 50% 0%,
-      rgba(255,255,255,0.72),
-      transparent 40%
-    ),
-    linear-gradient(
-      135deg,
-      #e8f8ff,
-      #c8ebf9 55%,
-      #b7e1f3
-    );
-
-  opacity: 0;
-}
-
-.story.open {
-  display: flex;
-
-  animation: storyOpen 0.65s
-    cubic-bezier(0.22, 1, 0.36, 1)
-    forwards;
-}
-
-@keyframes storyOpen {
-  from {
-    opacity: 0;
-    transform: scale(1.025);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-
-/* =====================================================
-   STORY BACKGROUND
-===================================================== */
-
-.story-glow {
-  position: absolute;
-
-  border-radius: 50%;
-
-  pointer-events: none;
-
-  filter: blur(35px);
-
-  background: rgba(255,255,255,0.3);
-
-  animation: storyGlow 7s ease-in-out infinite;
-}
-
-.story-glow-one {
-  width: 360px;
-  height: 360px;
-
-  top: -170px;
-  left: 10%;
-}
-
-.story-glow-two {
-  width: 280px;
-  height: 280px;
-
-  bottom: -130px;
-  right: 10%;
-
-  animation-delay: -3s;
-}
-
-@keyframes storyGlow {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.45;
-  }
-
-  50% {
-    transform: scale(1.15);
-    opacity: 0.75;
-  }
-}
-
-.story-bubble {
-  position: absolute;
-
-  border-radius: 50%;
-
-  background: rgba(255,255,255,0.22);
-
-  pointer-events: none;
-
-  animation: storyBubble 9s ease-in-out infinite;
-}
-
-.story-bubble-one {
-  width: 20px;
-  height: 20px;
-
-  top: 22%;
-  left: 8%;
-}
-
-.story-bubble-two {
-  width: 12px;
-  height: 12px;
-
-  top: 48%;
-  right: 8%;
-
-  animation-delay: -3s;
-}
-
-.story-bubble-three {
-  width: 28px;
-  height: 28px;
-
-  bottom: 17%;
-  left: 12%;
-
-  animation-delay: -6s;
-}
-
-@keyframes storyBubble {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-25px);
-  }
-}
-
-
-/* =====================================================
-   STORY TOP
-===================================================== */
-
-.story-top {
-  width: min(
-    1150px,
-    calc(100% - 44px)
-  );
-
-  margin: 0 auto;
-
-  padding-top: 24px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  flex: 0 0 auto;
-
-  position: relative;
-
-  z-index: 10;
-
-  animation: fadeDown 0.6s 0.15s both;
-}
-
-.icon-button {
-  width: 48px;
-  height: 48px;
-
-  border: 0;
-
-  border-radius: 50%;
-
-  background: rgba(
-    255,
-    255,
-    255,
-    0.56
-  );
-
-  color: #5c8799;
-
-  font-size: 28px;
-
-  line-height: 1;
-
-  cursor: pointer;
-
-  z-index: 30;
-
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
-}
-
-.icon-button:hover {
-  transform: rotate(8deg) scale(1.05);
-
-  background: rgba(
-    255,
-    255,
-    255,
-    0.82
-  );
-}
-
-.progress {
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-
-  color: #6c91a1;
-
-  font-size: 13px;
-
-  letter-spacing: 0.12em;
-}
-
-.progress-line {
-  width: 142px;
-
-  height: 3px;
-
-  border-radius: 999px;
-
-  background:
-    rgba(
-      64,
-      153,
-      190,
-      0.22
-    );
-
-  overflow: hidden;
-}
-
-.progress-line i {
-  display: block;
-
-  width: 20%;
-
-  height: 100%;
-
-  border-radius: inherit;
-
-  background: #3195bd;
-
-  transition:
-    width 0.5s
-    cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-
-/* =====================================================
-   STORY CONTENT
-===================================================== */
-
-.story-content {
-  width: min(
-    1050px,
-    calc(100% - 44px)
-  );
-
-  margin: 0 auto;
-
-  flex: 1 1 auto;
-
-  min-height: 0;
-
-  overflow-y: auto;
-
-  overflow-x: hidden;
-
-  padding: 50px 5px 30px;
-
-  scrollbar-width: thin;
-
-  scrollbar-color:
-    rgba(55,145,182,0.55)
-    transparent;
-
-  position: relative;
-
-  z-index: 5;
-}
-
-.story-content::-webkit-scrollbar {
-  width: 7px;
-}
-
-.story-content::-webkit-scrollbar-thumb {
-  background:
-    rgba(
-      55,
-      145,
-      182,
-      0.55
-    );
-
-  border-radius: 99px;
-}
-
-
-/* =====================================================
-   STORY PAGE TRANSITION
-===================================================== */
-
-.story-page-enter {
-  animation:
-    pageEnter
-    0.65s
-    cubic-bezier(0.22, 1, 0.36, 1)
-    both;
-}
-
-@keyframes pageEnter {
-  from {
-    opacity: 0;
-    transform:
-      translateY(28px)
-      scale(0.985);
-  }
-
-  to {
-    opacity: 1;
-    transform:
-      translateY(0)
-      scale(1);
-  }
-}
-
-.story-page-exit {
-  animation:
-    pageExit
-    0.25s ease
-    both;
-}
-
-@keyframes pageExit {
-  to {
-    opacity: 0;
-    transform: translateY(-15px);
-  }
-}
-
-
-/* =====================================================
-   NAVIGATION
-===================================================== */
-
-.story-navigation {
-  width: min(
-    1050px,
-    calc(100% - 44px)
-  );
-
-  margin: 0 auto;
-
-  padding: 10px 5px 25px;
-
-  flex: 0 0 auto;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 15px;
-
-  position: relative;
-
-  z-index: 20;
-
-  animation: fadeUp 0.6s 0.25s both;
-}
-
-.text-button {
-  border: 0;
-
-  background: transparent;
-
-  color: #5e8291;
-
-  font-size: 17px;
-
-  cursor: pointer;
-
-  padding: 10px 0;
-
-  transition:
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.text-button:hover {
-  color: var(--blue-dark);
-
-  transform: translateX(-3px);
-}
-
-
-/* =====================================================
-   TYPOGRAPHY
-===================================================== */
-
-.letter,
-.wishes,
-.memories,
-.cake-page,
-.final-page {
-  width: 100%;
-
-  max-width: 930px;
-
-  margin: 0 auto;
-
-  padding-bottom: 30px;
-}
-
-.story-kicker {
-  margin: 0 0 12px;
-
-  color: #3f8ead;
-
-  font-size: 13px;
-
-  font-weight: 700;
-
-  letter-spacing: 0.18em;
-
-  text-transform: uppercase;
-}
-
-.story-title {
-  margin: 0;
-
-  color: var(--blue-dark);
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size:
-    clamp(
-      42px,
-      7vw,
-      78px
-    );
-
-  line-height: 0.98;
-
-  letter-spacing: -0.045em;
-
-  font-weight: 700;
-}
-
-.story-intro {
-  max-width: 820px;
-
-  margin: 22px 0 28px;
-
-  font-size: 18px;
-
-  line-height: 1.75;
-
-  color: #5d7e8c;
-}
-
-.letter-mark {
-  width: 55px;
-
-  height: 3px;
-
-  border-radius: 99px;
-
-  background: #4ba5c8;
-
-  margin: 22px 0 30px;
-}
-
-.letter-body,
-.wish-text {
-  max-width: 820px;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size: 18px;
-
-  line-height: 1.9;
-
-  color: #506f7e;
-}
-
-.letter-body p,
-.wish-text p {
-  margin: 0 0 22px;
-}
-
-.letter-greeting {
-  color: var(--blue-dark);
-
-  font-size: 23px;
-
-  font-weight: 700;
-}
-
-.letter-closing {
-  color: var(--blue-dark);
-
-  font-size: 20px;
-
-  margin-top: 32px !important;
-}
-
-.signature {
-  margin-top: 25px;
-
-  color: #3e7e98;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size: 20px;
-
-  font-style: italic;
-}
-
-.wish-ending {
-  color: var(--blue-dark);
-
-  font-weight: 700;
-
-  font-size: 21px;
-
-  margin-top: 32px !important;
-}
-
-
-/* =====================================================
-   TEXT REVEAL
-===================================================== */
-
-.letter .story-kicker,
-.wishes .story-kicker,
-.memories .story-kicker,
-.cake-page .story-kicker,
-.final-page .story-kicker {
-  animation: fadeUp 0.65s 0.05s both;
-}
-
-.letter .story-title,
-.wishes .story-title,
-.memories .story-title,
-.cake-page .story-title,
-.final-page .story-title {
-  animation: titleReveal 0.8s 0.15s both;
-}
-
-.letter .story-intro,
-.wishes .story-intro,
-.cake-page .story-intro {
-  animation: fadeUp 0.7s 0.28s both;
-}
-
-.letter-body,
-.wish-text {
-  animation: fadeUp 0.75s 0.4s both;
-}
-
-@keyframes titleReveal {
-  from {
-    opacity: 0;
-
-    transform:
-      translateY(25px)
-      scale(0.97);
-
-    filter: blur(3px);
-  }
-
-  to {
-    opacity: 1;
-
-    transform:
-      translateY(0)
-      scale(1);
-
-    filter: blur(0);
-  }
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-
-    transform: translateY(15px);
-  }
-
-  to {
-    opacity: 1;
-
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeDown {
-  from {
-    opacity: 0;
-
-    transform: translateY(-15px);
-  }
-
-  to {
-    opacity: 1;
-
-    transform: translateY(0);
-  }
-}
-
-
-/* =====================================================
+/* =========================================================
+   BIRTHDAY WEBSITE — BEBE
+   21 SEPTEMBER 2026
+========================================================= */
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const story = document.getElementById("story");
+const storyContent = document.getElementById("storyContent");
+
+const openSurprise = document.getElementById("openSurprise");
+const closeStory = document.getElementById("closeStory");
+const reopenStory = document.getElementById("reopenStory");
+
+const nextButton = document.getElementById("nextButton");
+const backButton = document.getElementById("backButton");
+
+const birthdayMusic = document.getElementById("birthdayMusic");
+
+const stepNumber = document.getElementById("stepNumber");
+const progressBar = document.getElementById("progressBar");
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let currentStep = 0;
+let cakeReady = false;
+
+let isTransitioning = false;
+
+
+/* =========================================================
+   21 PHOTO CAPTIONS
+========================================================= */
+
+const photoCaptions = [
+  "Si ganteng waktu masih bayiii.",
+  "Bebe waktu SD gemess.",
+  "Harusnya aku dulu tau di SMP ada cowo seganteng ini :V.",
+  "Salah satu foto yang selalu punya cerita sendiri.",
+  "First time dikasih bungaa, i love u sayangg.",
+  "Gemess pakai jaket zebra andalannya.",
+  "Gula aja insecure be sama kemanisan dari wajahmu hehe.",
+  "Cowokkuuuu.",
+  "Walau kepotong tapi masih kelihatan wajah manisnya.",
+  "Eh kepotong lagi hehe :VvV.",
+  "Eh ini juga, yang muncul malah cewe imut.",
+  "Salah satu dari sekian banyak momen favoritku.",
+  "Eh ha'a lah.",
+  "CIE FIRST DATEEE.",
+  "Pengin ngajakin bebe terus kalau ada film baru di bioskop deh.",
+  "Bahagianya hatiku rek saat ketemu cowokku.",
+  "Hal kecil yang ternyata bisa berarti besar.",
+  "Kenangan yang selalu berhasil bikin aku senyum.",
+  "Makasih untuk semua momen yang sudah kita punya.",
+  "Satu lagi halaman kecil dari cerita kita.",
+  "Dan ini... salah satu bagian yang paling aku syukuri cowokku gantengku manisku."
+];
+
+
+/* =========================================================
+   LETTER
+========================================================= */
+
+function letterHTML() {
+  return `
+    <article class="letter story-page-enter">
+
+      <p class="story-kicker">
+        bagian pertama
+      </p>
+
+      <h2 class="story-title">
+        Sedikit dari aku untuk bebe 🤍
+      </h2>
+
+      <p class="story-intro">
+        Sebelum semuanya dimulai, aku cuma mau bilang satu hal kecil:
+        hari ini bukan cuma tentang bertambahnya umur kamu,
+        tapi juga tentang bersyukur karena kamu sudah sampai sejauh ini.
+      </p>
+
+      <div class="letter-mark"></div>
+
+      <div class="letter-body">
+
+        <p class="letter-greeting">
+          Happy birthday, bebe, sayangku, cintaku, gantengku 🤍
+        </p>
+
+        <p>
+          Hari ini kamu resmi bertambah umur lagi.
+          Dan entah kenapa, aku ikut seneng banget lihat kamu sampai di umur ini.
+          Rasanya baru kemarin kita masih ngobrol tentang hal-hal random,
+          ketawa karena sesuatu yang sebenarnya nggak lucu-lucu amat,
+          dan sekarang tiba-tiba kamu sudah 17 tahun.
+        </p>
+
+        <p>
+          Aku cuma mau bilang terima kasih.
+          Terima kasih karena selama ini sudah menjadi seseorang
+          yang bisa membuat hari-hariku terasa lebih berwarna.
+          Terima kasih untuk semua cerita, perhatian,
+          candaan, waktu, dan hal-hal kecil yang mungkin menurut kamu biasa saja,
+          tapi sebenarnya berarti buat aku.
+        </p>
+
+        <p>
+          Aku mungkin nggak selalu bisa mengungkapkan semuanya dengan sempurna.
+          Kadang aku juga masih suka bingung harus ngomong apa.
+          Tapi aku harap bebe tahu kalau keberadaan bebe itu berarti.
+          Bahkan dari hal-hal kecil sekalipun.
+        </p>
+
+        <p>
+          Di umur 17 ini, aku harap bebe bisa semakin mengenal diri sendiri,
+          semakin berani mencoba hal-hal baru,
+          dan nggak takut untuk punya mimpi yang besar.
+          Nggak harus selalu sempurna.
+          Nggak harus selalu tahu semuanya.
+          Pelan-pelan juga nggak apa-apa.
+        </p>
+
+        <p>
+          Kalau suatu hari bebe capek,
+          semoga bebe ingat kalau bebe nggak harus selalu terlihat kuat.
+          Boleh istirahat.
+          Boleh cerita.
+          Boleh punya hari yang nggak baik-baik saja.
+          Dan semoga setelah itu bebe bisa bangkit lagi dengan cara bebe sendiri.
+        </p>
+
+        <p>
+          Aku juga berharap semua hal baik yang bebe kasih ke orang lain
+          suatu saat kembali ke bebe dalam bentuk yang jauh lebih baik.
+          Semoga orang-orang baik selalu datang di hidup bebe,
+          dan semoga bebe selalu dikelilingi hal-hal yang membuat hati bebe tenang.
+        </p>
+
+        <p>
+          Aku nggak tahu nanti cerita kita akan membawa kita ke mana.
+          Tapi untuk sekarang,
+          aku bersyukur banget pernah dipertemukan sama bebe
+          dan punya banyak momen yang bisa aku simpan sebagai kenangan.
+        </p>
+
+        <p>
+          Jadi hari ini,
+          nikmati umur baru bebe.
+          Nikmati semua ucapan baik yang datang.
+          Nikmati kue, hadiah, perhatian,
+          dan semua hal kecil yang dibuat orang-orang untuk bebe.
+          Karena bebe memang pantas mendapatkan hari yang spesial.
+        </p>
+
+        <p class="letter-closing">
+          Happy birthday, bebe. 🤍
+        </p>
+
+        <p>
+          Aku sayang banget sama bebe.
+          More than I probably know how to say :D
+        </p>
+
+        <p class="signature">
+          — Dhiva ♡
+        </p>
+
+      </div>
+
+    </article>
+  `;
+}
+
+
+/* =========================================================
+   WISHES
+========================================================= */
+
+function wishesHTML() {
+  return `
+    <article class="wishes story-page-enter">
+
+      <p class="story-kicker">
+        bagian kedua
+      </p>
+
+      <h2 class="story-title">
+        Untuk umur 17 kamu ✨
+      </h2>
+
+      <p class="story-intro">
+        Ada beberapa hal yang pengin banget aku doakan buat bebe
+        di umur yang baru ini.
+      </p>
+
+      <div class="wish-text">
+
+        <p>
+          Semoga di umur 17 ini bebe selalu diberikan kesehatan,
+          kebahagiaan, dan banyak hal baik yang mungkin sekarang
+          belum pernah bebe bayangkan.
+        </p>
+
+        <p>
+          Semoga sekolahnya dilancarkan,
+          semua urusannya dimudahkan,
+          dan semua usaha yang bebe lakukan
+          bisa menghasilkan sesuatu yang bikin bebe bangga sama diri sendiri.
+        </p>
+
+        <p>
+          Semoga bebe selalu punya alasan untuk tersenyum.
+          Bukan cuma karena sesuatu yang besar,
+          tapi juga karena hal-hal sederhana:
+          makanan yang enak, lagu favorit,
+          obrolan random, ketemu orang yang disayang,
+          atau hari biasa yang ternyata terasa menyenangkan.
+        </p>
+
+        <p>
+          Semoga bebe berani mengejar apa yang bebe mau.
+          Jangan terlalu takut gagal.
+          Karena gagal bukan berarti semuanya selesai.
+          Kadang justru dari sana kita belajar
+          dan menemukan jalan yang lebih cocok.
+        </p>
+
+        <p>
+          Semoga bebe bisa terus menjadi versi diri bebe
+          yang lebih baik tanpa harus kehilangan sisi diri bebe
+          yang aku kenal dan aku sayang.
+        </p>
+
+        <p>
+          Dan semoga semua mimpi yang sekarang masih berupa
+          "pengen suatu hari nanti..."
+          perlahan bisa berubah menjadi
+          "akhirnya aku berhasil."
+        </p>
+
+        <p>
+          Aku juga berharap kalau suatu saat hidup terasa berat,
+          bebe nggak lupa bahwa masih ada banyak hal baik
+          yang menunggu di depan.
+          Jadi jangan menyerah hanya karena satu hari yang buruk.
+        </p>
+
+        <p>
+          Teruslah tumbuh.
+          Teruslah belajar.
+          Teruslah jadi bebe yang aku kenal.
+        </p>
+
+        <p class="wish-ending">
+          Pokoknya, semoga umur 17 ini baik banget sama bebe. 🤍
+        </p>
+
+      </div>
+
+    </article>
+  `;
+}
+
+
+/* =========================================================
    MEMORIES
-===================================================== */
+========================================================= */
 
-.memories-header {
-  margin-bottom: 28px;
-}
+function memoriesHTML() {
+  const photos = photoCaptions
+    .map((caption, index) => {
 
-.memory-grid {
-  display: grid;
+      const number = index + 1;
 
-  grid-template-columns:
-    repeat(
-      3,
-      minmax(0, 1fr)
-    );
+      return `
+        <figure
+          class="memory-item"
+          data-memory-index="${index}"
+        >
 
-  gap: 30px 24px;
-}
+          <img
+            class="memory-image"
+            data-photo="${number}"
+            alt="${caption}"
+            loading="lazy"
+          >
 
-.memory-item {
-  margin: 0;
+          <figcaption>
+            <strong>${String(number).padStart(2, "0")}.</strong>
+            ${caption}
+          </figcaption>
 
-  min-width: 0;
+        </figure>
+      `;
+    })
+    .join("");
 
-  opacity: 0;
+  return `
+    <article class="memories story-page-enter">
 
-  animation:
-    memoryReveal
-    0.7s
-    cubic-bezier(0.22, 1, 0.36, 1)
-    forwards;
-}
+      <div class="memories-header">
 
-.memory-item:nth-child(1)  { animation-delay: 0.12s; }
-.memory-item:nth-child(2)  { animation-delay: 0.18s; }
-.memory-item:nth-child(3)  { animation-delay: 0.24s; }
-.memory-item:nth-child(4)  { animation-delay: 0.30s; }
-.memory-item:nth-child(5)  { animation-delay: 0.36s; }
-.memory-item:nth-child(6)  { animation-delay: 0.42s; }
-.memory-item:nth-child(7)  { animation-delay: 0.48s; }
-.memory-item:nth-child(8)  { animation-delay: 0.54s; }
-.memory-item:nth-child(9)  { animation-delay: 0.60s; }
-.memory-item:nth-child(10) { animation-delay: 0.66s; }
-.memory-item:nth-child(11) { animation-delay: 0.72s; }
-.memory-item:nth-child(12) { animation-delay: 0.78s; }
-.memory-item:nth-child(13) { animation-delay: 0.84s; }
-.memory-item:nth-child(14) { animation-delay: 0.90s; }
-.memory-item:nth-child(15) { animation-delay: 0.96s; }
-.memory-item:nth-child(16) { animation-delay: 1.02s; }
-.memory-item:nth-child(17) { animation-delay: 1.08s; }
-.memory-item:nth-child(18) { animation-delay: 1.14s; }
-.memory-item:nth-child(19) { animation-delay: 1.20s; }
-.memory-item:nth-child(20) { animation-delay: 1.26s; }
-.memory-item:nth-child(21) { animation-delay: 1.32s; }
+        <p class="story-kicker">
+          bagian ketiga
+        </p>
 
-@keyframes memoryReveal {
-  from {
-    opacity: 0;
+        <h2 class="story-title">
+          21 potongan kecil dari kita 📸
+        </h2>
 
-    transform:
-      translateY(25px)
-      scale(0.96);
-  }
+        <p class="story-intro">
+          Beberapa foto mungkin sederhana,
+          tapi setiap foto punya cerita kecilnya sendiri.
+        </p>
 
-  to {
-    opacity: 1;
+      </div>
 
-    transform:
-      translateY(0)
-      scale(1);
-  }
-}
+      <div class="memory-grid">
+        ${photos}
+      </div>
 
-.memory-image {
-  display: block;
-
-  width: 100%;
-
-  height: 205px;
-
-  object-fit: cover;
-
-  border-radius: 18px;
-
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      0.22
-    );
-
-  box-shadow:
-    0 9px 24px
-    rgba(
-      40,
-      113,
-      140,
-      0.12
-    );
-
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease,
-    filter 0.35s ease;
-}
-
-.memory-item:hover .memory-image {
-  transform:
-    translateY(-5px)
-    scale(1.015);
-
-  box-shadow:
-    0 15px 30px
-    rgba(
-      40,
-      113,
-      140,
-      0.18
-    );
-
-  filter: brightness(1.03);
-}
-
-.memory-item figcaption {
-  margin-top: 11px;
-
-  font-size: 14px;
-
-  line-height: 1.55;
-
-  color: #638494;
+    </article>
+  `;
 }
 
 
-/* =====================================================
+/* =========================================================
    CAKE
-===================================================== */
+========================================================= */
 
-.cake-page {
-  text-align: center;
+function cakeHTML() {
+  return `
+    <article class="cake-page story-page-enter">
+
+      <p class="story-kicker">
+        bagian keempat
+      </p>
+
+      <h2 class="story-title">
+        Sekarang, bikin satu harapan ✨
+      </h2>
+
+      <p class="story-intro">
+        Tutup mata sebentar, bebe.
+        Pikirkan satu hal yang paling kamu inginkan.
+        Nggak perlu bilang ke siapa-siapa.
+        Cukup kamu dan harapan itu.
+        Setelah itu... tiup lilinnya.
+      </p>
+
+
+      <div class="cake-scene">
+
+        <div class="cake-number">
+          17
+        </div>
+
+        <div
+          class="cake"
+          id="birthdayCake"
+        >
+
+          <div class="frosting"></div>
+
+          <div class="candle candle-1">
+            <span class="flame"></span>
+          </div>
+
+          <div class="candle candle-2">
+            <span class="flame"></span>
+          </div>
+
+          <div class="candle candle-3">
+            <span class="flame"></span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <p
+        id="cakeMessage"
+        class="cake-message"
+      >
+        Bikin wish dulu, bebe 🤍
+      </p>
+
+
+      <button
+        id="cakeButton"
+        class="main-button"
+        type="button"
+      >
+        Tiup lilinnya ✨
+      </button>
+
+    </article>
+  `;
 }
 
-.cake-page .story-intro {
-  margin-left: auto;
 
-  margin-right: auto;
+/* =========================================================
+   FINAL
+========================================================= */
+
+function finalHTML() {
+  return `
+    <article class="final-page story-page-enter">
+
+      <p class="story-kicker">
+        bagian terakhir
+      </p>
+
+
+      <img
+        id="finalSnoopy"
+        src="images/snoopy-birthday.png"
+        data-snoopy
+        alt="Snoopy ulang tahun"
+        class="final-snoopy"
+      >
+
+
+      <h2 class="story-title">
+        Satu pesan terakhir untuk Bebe 🤍
+      </h2>
+
+
+      <p class="final-message">
+        Harapanku sederhana.
+        Semoga umur 17 ini baik sama bebe.
+      </p>
+
+
+      <p class="final-small">
+        Semoga bebe menemukan lebih banyak alasan untuk tersenyum,
+        lebih banyak mimpi untuk dikejar,
+        dan lebih banyak momen yang layak untuk diingat.
+        Dan kalau aku boleh punya satu harapan kecil untuk diriku sendiri...
+        semoga aku masih boleh ada di beberapa momen itu. 🤍
+      </p>
+
+
+      <p class="final-message">
+        Selamat ulang tahun ke-17, Bebe. 🤍
+      </p>
+
+
+      <p class="signature">
+        — Dhiva ♡
+      </p>
+
+    </article>
+  `;
 }
 
-.cake-scene {
-  width: 330px;
 
-  height: 330px;
+/* =========================================================
+   STORY STEPS
+========================================================= */
 
-  margin: 20px auto 8px;
+const steps = [
+  letterHTML,
+  wishesHTML,
+  memoriesHTML,
+  cakeHTML,
+  finalHTML
+];
 
-  position: relative;
 
-  display: flex;
+/* =========================================================
+   SHOW STEP
+========================================================= */
 
-  align-items: flex-end;
+function showStep(index, direction = "next") {
 
-  justify-content: center;
-
-  animation:
-    cakeSceneEntrance
-    0.9s
-    0.25s
-    cubic-bezier(0.22, 1, 0.36, 1)
-    both;
-}
-
-@keyframes cakeSceneEntrance {
-  from {
-    opacity: 0;
-
-    transform:
-      translateY(35px)
-      scale(0.85);
+  if (isTransitioning) {
+    return;
   }
 
-  to {
-    opacity: 1;
-
-    transform:
-      translateY(0)
-      scale(1);
-  }
-}
-
-.cake {
-  position: relative;
-
-  width: 280px;
-
-  height: 125px;
-
-  margin-bottom: 38px;
-
-  border-radius:
-    18px 18px 30px 30px;
-
-  background:
-    linear-gradient(
-      to bottom,
-      #ffe89a 0 34%,
-      #f4c85f 34% 39%,
-      #fff0b3 39% 68%,
-      #eab94d 68% 73%,
-      #ffdc7b 73% 100%
-    );
-
-  border:
-    4px solid
-    rgba(
-      153,
-      116,
-      50,
-      0.12
-    );
-
-  box-shadow:
-    0 18px 25px
-    rgba(
-      77,
-      118,
-      134,
-      0.18
-    );
-
-  animation:
-    cakeBounce
-    4s
-    1.2s
-    ease-in-out
-    infinite;
-}
-
-@keyframes cakeBounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-5px);
-  }
-}
-
-.frosting {
-  position: absolute;
-
-  left: -5px;
-
-  right: -5px;
-
-  top: -18px;
-
-  height: 45px;
-
-  border-radius:
-    22px 22px 15px 15px;
-
-  background: #f58db6;
-
-  box-shadow:
-    inset 0 -9px 0
-    rgba(
-      205,
-      85,
-      126,
-      0.12
-    );
-}
-
-.frosting::after {
-  content: "";
-
-  position: absolute;
-
-  left: 25px;
-
-  top: 25px;
-
-  width: 28px;
-
-  height: 22px;
-
-  background: #f58db6;
-
-  border-radius:
-    0 0 16px 16px;
-
-  box-shadow:
-    60px 4px 0 #f58db6,
-    120px -2px 0 #f58db6,
-    185px 3px 0 #f58db6;
-}
-
-.cake-number {
-  position: absolute;
-
-  z-index: 5;
-
-  left: 50%;
-
-  top: 10px;
-
-  transform:
-    translateX(-50%);
-
-  width: 74px;
-
-  height: 74px;
-
-  display: grid;
-
-  place-items: center;
-
-  border-radius: 50%;
-
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      0.75
-    );
-
-  color: #d85e8c;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size: 32px;
-
-  font-weight: 700;
-
-  box-shadow:
-    0 9px 20px
-    rgba(
-      76,
-      119,
-      139,
-      0.12
-    );
-
-  animation:
-    numberPulse
-    2.5s
-    ease-in-out
-    infinite;
-}
-
-@keyframes numberPulse {
-  0%,
-  100% {
-    transform:
-      translateX(-50%)
-      scale(1);
-  }
-
-  50% {
-    transform:
-      translateX(-50%)
-      scale(1.04);
-  }
-}
-
-.candle {
-  position: absolute;
-
-  z-index: 8;
-
-  bottom: 104px;
-
-  width: 17px;
-
-  height: 55px;
-
-  border-radius:
-    7px 7px 3px 3px;
-
-  background:
-    repeating-linear-gradient(
-      135deg,
-      #5ec6e6 0 9px,
-      #ffd875 9px 18px,
-      #ef82ad 18px 27px
-    );
-
-  border:
-    2px solid
-    rgba(
-      58,
-      132,
-      157,
-      0.12
-    );
-}
-
-.candle-1 {
-  left: 104px;
-}
-
-.candle-2 {
-  left: 132px;
-}
-
-.candle-3 {
-  left: 160px;
-}
-
-.flame {
-  position: absolute;
-
-  width: 14px;
-
-  height: 21px;
-
-  left: 50%;
-
-  top: -19px;
-
-  transform:
-    translateX(-50%)
-    rotate(45deg);
-
-  border-radius:
-    70% 0 70% 70%;
-
-  background: #ffd45e;
-
-  box-shadow:
-    0 0 16px
-    rgba(
-      255,
-      207,
-      74,
-      0.75
-    );
-
-  transition:
-    opacity 0.25s ease,
-    transform 0.35s ease;
-
-  animation:
-    flameFlicker
-    0.7s
-    ease-in-out
-    infinite alternate;
-}
-
-@keyframes flameFlicker {
-  from {
-    transform:
-      translateX(-50%)
-      rotate(42deg)
-      scale(0.95);
-  }
-
-  to {
-    transform:
-      translateX(-50%)
-      rotate(48deg)
-      scale(1.08);
-  }
-}
-
-.cake.blown .flame {
-  opacity: 0;
-
-  animation: none;
-
-  transform:
-    translateX(-50%)
-    translateY(-18px)
-    scale(0.4)
-    rotate(45deg);
-}
-
-.cake.blown {
-  animation:
-    cakeCelebrate
-    0.7s
-    ease
-    both;
-}
-
-@keyframes cakeCelebrate {
-  0% {
-    transform: scale(1);
-  }
-
-  35% {
-    transform: scale(1.06) rotate(-1deg);
-  }
-
-  70% {
-    transform: scale(0.98) rotate(1deg);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
-.cake-message {
-  min-height: 28px;
-
-  margin: 8px auto 15px;
-
-  font-size: 17px;
-
-  color: #5b7c89;
-
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
-}
-
-.cake-page .main-button {
-  position: relative;
-
-  z-index: 20;
-}
-
-
-/* =====================================================
-   FINAL PAGE
-===================================================== */
-
-.final-page {
-  text-align: center;
-
-  padding-bottom: 40px;
-}
-
-.final-snoopy {
-  width: min(
-    330px,
-    68vw
+  index = Math.max(
+    0,
+    Math.min(index, steps.length - 1)
   );
 
-  height: 220px;
+  currentStep = index;
 
-  margin: 0 auto 5px;
-
-  animation:
-    finalSnoopyEntrance
-    1s
-    0.2s
-    both,
-    finalSnoopyFloat
-    5s
-    1.3s
-    ease-in-out
-    infinite;
-}
-
-@keyframes finalSnoopyEntrance {
-  from {
-    opacity: 0;
-
-    transform:
-      translateY(30px)
-      scale(0.88);
-  }
-
-  to {
-    opacity: 1;
-
-    transform:
-      translateY(0)
-      scale(1);
-  }
-}
-
-@keyframes finalSnoopyFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-9px);
-  }
-}
-
-.final-page .story-title {
-  max-width: 800px;
-
-  margin: 0 auto;
-}
-
-.final-message {
-  max-width: 690px;
-
-  margin: 25px auto 0;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size: 24px;
-
-  line-height: 1.65;
-
-  color: #315f73;
-
-  animation: fadeUp 0.8s 0.45s both;
-}
-
-.final-small {
-  max-width: 720px;
-
-  margin: 22px auto;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size: 18px;
-
-  line-height: 1.85;
-
-  animation: fadeUp 0.8s 0.6s both;
-}
-
-.final-page .signature {
-  animation: signatureReveal 1s 0.8s both;
-}
-
-@keyframes signatureReveal {
-  from {
-    opacity: 0;
-
-    transform:
-      translateY(10px)
-      rotate(-3deg);
-  }
-
-  to {
-    opacity: 1;
-
-    transform:
-      translateY(0)
-      rotate(0);
-  }
-}
+  cakeReady = false;
 
 
-/* =====================================================
-   REOPEN
-===================================================== */
+  /* -----------------------------------------
+     Build next page
+  ----------------------------------------- */
 
-.reopen-button {
-  display: none;
+  storyContent.innerHTML = steps[currentStep]();
 
-  position: fixed;
 
-  right: 22px;
+  /* -----------------------------------------
+     Direction class
+  ----------------------------------------- */
 
-  bottom: 22px;
+  const page =
+    storyContent.firstElementChild;
 
-  z-index: 200;
+  if (page) {
 
-  border: 0;
-
-  border-radius: 999px;
-
-  padding: 12px 18px;
-
-  background: #3195bd;
-
-  color: white;
-
-  font-weight: 700;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 10px 25px
-    rgba(
-      31,
-      119,
-      154,
-      0.25
+    page.classList.remove(
+      "story-page-enter"
     );
 
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
+    void page.offsetWidth;
 
-.reopen-button.show {
-  display: block;
-
-  animation:
-    reopenEntrance
-    0.5s
-    cubic-bezier(0.22, 1, 0.36, 1)
-    both;
-}
-
-.reopen-button:hover {
-  transform: translateY(-3px);
-
-  box-shadow:
-    0 14px 28px
-    rgba(
-      31,
-      119,
-      154,
-      0.3
+    page.classList.add(
+      "story-page-enter"
     );
-}
 
-@keyframes reopenEntrance {
-  from {
-    opacity: 0;
-
-    transform:
-      translateY(15px)
-      scale(0.9);
+    if (direction === "back") {
+      page.style.animationName =
+        "pageEnterBack";
+    }
   }
 
-  to {
-    opacity: 1;
 
-    transform:
-      translateY(0)
-      scale(1);
+  /* -----------------------------------------
+     Progress
+  ----------------------------------------- */
+
+  stepNumber.textContent =
+    String(currentStep + 1).padStart(2, "0");
+
+
+  const progress =
+    ((currentStep + 1) / steps.length) * 100;
+
+  progressBar.style.width =
+    `${progress}%`;
+
+
+  /* -----------------------------------------
+     Back button
+  ----------------------------------------- */
+
+  if (currentStep === 0) {
+
+    backButton.style.visibility =
+      "hidden";
+
+  } else {
+
+    backButton.style.visibility =
+      "visible";
   }
+
+
+  /* -----------------------------------------
+     Next button
+  ----------------------------------------- */
+
+  if (currentStep === steps.length - 1) {
+
+    nextButton.textContent =
+      "Ulangi dari awal ↺";
+
+    nextButton.style.display =
+      "inline-block";
+
+  } else if (currentStep === 3) {
+
+    /*
+      Cake page has its own button.
+      So hide navigation button.
+    */
+
+    nextButton.style.display =
+      "none";
+
+  } else {
+
+    nextButton.textContent =
+      "Lanjut →";
+
+    nextButton.style.display =
+      "inline-block";
+  }
+
+
+  /* -----------------------------------------
+     Scroll story to top
+  ----------------------------------------- */
+
+  storyContent.scrollTo({
+    top: 0,
+    behavior: "auto"
+  });
+
+
+  /* -----------------------------------------
+     Page-specific setup
+  ----------------------------------------- */
+
+  if (currentStep === 2) {
+    setupPhotoFallbacks();
+  }
+
+  if (currentStep === 3) {
+    setupCake();
+  }
+
+  setupSnoopyFallbacks();
+
+
+  /* -----------------------------------------
+     Tiny delayed animation trigger
+  ----------------------------------------- */
+
+  requestAnimationFrame(() => {
+
+    if (page) {
+      page.classList.add("page-ready");
+    }
+
+  });
 }
 
 
-/* =====================================================
+/* =========================================================
+   PHOTO FALLBACK
+========================================================= */
+
+function setupPhotoFallbacks() {
+
+  const images =
+    document.querySelectorAll(
+      "[data-photo]"
+    );
+
+
+  images.forEach((img) => {
+
+    const number =
+      img.dataset.photo;
+
+
+    const extensions = [
+      "jpg",
+      "jpeg",
+      "png",
+      "JPG",
+      "JPEG",
+      "PNG",
+      "jpe",
+      "JPE"
+    ];
+
+
+    const paths = [];
+
+
+    /*
+      Main expected location
+    */
+
+    extensions.forEach((ext) => {
+
+      paths.push(
+        `images/photo-1 (${number}).${ext}`
+      );
+
+    });
+
+
+    /*
+      Alternative name
+    */
+
+    extensions.forEach((ext) => {
+
+      paths.push(
+        `images/photos-1 (${number}).${ext}`
+      );
+
+    });
+
+
+    /*
+      Root-level fallback
+    */
+
+    extensions.forEach((ext) => {
+
+      paths.push(
+        `photo-1 (${number}).${ext}`
+      );
+
+    });
+
+
+    extensions.forEach((ext) => {
+
+      paths.push(
+        `photos-1 (${number}).${ext}`
+      );
+
+    });
+
+
+    let attempt = 0;
+
+
+    function tryNextImage() {
+
+      if (attempt >= paths.length) {
+
+        img.removeAttribute("src");
+
+        img.alt =
+          `Foto ${number} belum ditemukan.`;
+
+        img.classList.add(
+          "photo-missing"
+        );
+
+        return;
+      }
+
+
+      const currentPath =
+        paths[attempt];
+
+      attempt++;
+
+
+      img.src = currentPath;
+    }
+
+
+    img.onload = () => {
+
+      img.classList.add(
+        "photo-loaded"
+      );
+
+    };
+
+
+    img.onerror = () => {
+
+      tryNextImage();
+
+    };
+
+
+    tryNextImage();
+
+  });
+}
+
+
+/* =========================================================
+   SNOOPY FALLBACK
+========================================================= */
+
+function setupSnoopyFallbacks() {
+
+  const snoopys =
+    document.querySelectorAll(
+      "[data-snoopy]"
+    );
+
+
+  snoopys.forEach((img) => {
+
+    const extensions = [
+      "png",
+      "jpe",
+      "jpg",
+      "jpeg",
+      "PNG",
+      "JPE",
+      "JPG",
+      "JPEG"
+    ];
+
+
+    const paths = [];
+
+
+    extensions.forEach((ext) => {
+
+      paths.push(
+        `images/snoopy-birthday.${ext}`
+      );
+
+    });
+
+
+    let attempt = 0;
+
+
+    function tryNext() {
+
+      if (attempt >= paths.length) {
+
+        img.style.display =
+          "none";
+
+        return;
+      }
+
+
+      img.src =
+        paths[attempt];
+
+      attempt++;
+
+    }
+
+
+    img.onerror = () => {
+
+      tryNext();
+
+    };
+
+
+    tryNext();
+
+  });
+}
+
+
+/* =========================================================
+   CAKE
+========================================================= */
+
+function setupCake() {
+
+  const cake =
+    document.getElementById(
+      "birthdayCake"
+    );
+
+  const button =
+    document.getElementById(
+      "cakeButton"
+    );
+
+  const message =
+    document.getElementById(
+      "cakeMessage"
+    );
+
+
+  if (
+    !cake ||
+    !button ||
+    !message
+  ) {
+    return;
+  }
+
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      if (!cakeReady) {
+
+        cakeReady = true;
+
+
+        /* ---------------------------------
+           Blow candle
+        --------------------------------- */
+
+        cake.classList.add(
+          "blown"
+        );
+
+
+        /* ---------------------------------
+           Change message
+        --------------------------------- */
+
+        message.style.opacity = "0";
+
+        message.style.transform =
+          "translateY(5px)";
+
+
+        setTimeout(() => {
+
+          message.textContent =
+            "Wish made! Semoga harapan bebe pelan-pelan jadi nyata. 🤍";
+
+          message.style.opacity = "1";
+
+          message.style.transform =
+            "translateY(0)";
+
+        }, 220);
+
+
+        /* ---------------------------------
+           Change button
+        --------------------------------- */
+
+        button.textContent =
+          "Lanjut ke pesan terakhir →";
+
+
+        /* ---------------------------------
+           Confetti
+        --------------------------------- */
+
+        makeConfetti();
+
+
+      } else {
+
+        /*
+          Second click:
+          move to final page
+        */
+
+        showStep(
+          4,
+          "next"
+        );
+
+      }
+
+    }
+  );
+}
+
+
+/* =========================================================
    CONFETTI
-===================================================== */
+========================================================= */
 
-.confetti {
-  position: fixed;
+function makeConfetti() {
 
-  top: -20px;
-
-  width: 9px;
-
-  height: 15px;
-
-  border-radius: 2px;
-
-  z-index: 999;
-
-  pointer-events: none;
-
-  animation:
-    confettiFall
-    2.1s
-    cubic-bezier(0.25, 0.8, 0.4, 1)
-    forwards;
-}
-
-@keyframes confettiFall {
-  to {
-    top: 110vh;
-
-    transform:
-      translateY(100vh)
-      rotate(720deg);
-  }
-}
+  const colors = [
+    "#73c9ee",
+    "#ff9fc2",
+    "#ffe58c",
+    "#ffffff"
+  ];
 
 
-/* =====================================================
-   MOBILE
-===================================================== */
+  const amount = 42;
 
-@media (max-width: 760px) {
 
-  .home {
-    padding: 25px 18px;
-  }
+  for (
+    let i = 0;
+    i < amount;
+    i++
+  ) {
 
-  .snoopy {
-    width: min(
-      330px,
-      82vw
+    const confetti =
+      document.createElement(
+        "span"
+      );
+
+
+    confetti.className =
+      "confetti";
+
+
+    confetti.style.left =
+      `${Math.random() * 100}%`;
+
+
+    confetti.style.background =
+      colors[
+        Math.floor(
+          Math.random() *
+          colors.length
+        )
+      ];
+
+
+    confetti.style.animationDelay =
+      `${Math.random() * 0.35}s`;
+
+
+    confetti.style.transform =
+      `rotate(${Math.random() * 360}deg)`;
+
+
+    confetti.style.width =
+      `${6 + Math.random() * 6}px`;
+
+
+    confetti.style.height =
+      `${10 + Math.random() * 8}px`;
+
+
+    document.body.appendChild(
+      confetti
     );
+
+
+    setTimeout(() => {
+
+      confetti.remove();
+
+    }, 2500);
+
+  }
+}
+
+
+/* =========================================================
+   OPEN STORY
+========================================================= */
+
+function openStory() {
+
+  story.classList.remove(
+    "closing"
+  );
+
+
+  story.classList.add(
+    "open"
+  );
+
+
+  story.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+
+  reopenStory.classList.remove(
+    "show"
+  );
+
+
+  /*
+    Always start from first page
+  */
+
+  showStep(
+    0,
+    "next"
+  );
+
+
+  /*
+    Music
+  */
+
+  birthdayMusic.volume = 0.55;
+
+
+  const playPromise =
+    birthdayMusic.play();
+
+
+  if (
+    playPromise !== undefined
+  ) {
+
+    playPromise.catch(() => {
+
+      /*
+        Browser may block autoplay.
+        Music will still work after
+        another user interaction.
+      */
+
+    });
+
   }
 
-  .story-top {
-    width: calc(100% - 28px);
+}
 
-    padding-top: 15px;
+
+/* =========================================================
+   CLOSE STORY
+========================================================= */
+
+function closeStoryPanel() {
+
+  story.classList.remove(
+    "open"
+  );
+
+  story.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+
+  reopenStory.classList.add(
+    "show"
+  );
+
+}
+
+
+/* =========================================================
+   NEXT STEP
+========================================================= */
+
+function goNext() {
+
+  if (isTransitioning) {
+    return;
   }
 
-  .story-content {
-    width: calc(100% - 28px);
 
-    padding:
-      35px 2px 25px;
+  /*
+    Final page:
+    restart from beginning
+  */
+
+  if (
+    currentStep ===
+    steps.length - 1
+  ) {
+
+    showStep(
+      0,
+      "next"
+    );
+
+    return;
   }
 
-  .story-navigation {
-    width: calc(100% - 28px);
 
-    padding-bottom: 16px;
+  /*
+    Cake page is controlled
+    by its own button.
+  */
+
+  if (currentStep === 3) {
+    return;
   }
 
-  .progress-line {
-    width: 90px;
+
+  changeStepWithTransition(
+    currentStep + 1,
+    "next"
+  );
+}
+
+
+/* =========================================================
+   PREVIOUS STEP
+========================================================= */
+
+function goBack() {
+
+  if (isTransitioning) {
+    return;
   }
 
-  .story-title {
-    font-size:
-      clamp(
-        39px,
-        12vw,
-        58px
+
+  if (currentStep <= 0) {
+    return;
+  }
+
+
+  changeStepWithTransition(
+    currentStep - 1,
+    "back"
+  );
+}
+
+
+/* =========================================================
+   SMOOTH PAGE TRANSITION
+========================================================= */
+
+function changeStepWithTransition(
+  targetIndex,
+  direction
+) {
+
+  if (
+    targetIndex < 0 ||
+    targetIndex >= steps.length
+  ) {
+    return;
+  }
+
+
+  isTransitioning = true;
+
+
+  const oldPage =
+    storyContent.firstElementChild;
+
+
+  if (oldPage) {
+
+    oldPage.classList.add(
+      "story-page-exit"
+    );
+
+  }
+
+
+  /*
+    Short exit animation,
+    then replace content.
+  */
+
+  setTimeout(() => {
+
+    showStep(
+      targetIndex,
+      direction
+    );
+
+
+    setTimeout(() => {
+
+      isTransitioning = false;
+
+    }, 650);
+
+  }, 240);
+
+}
+
+
+/* =========================================================
+   BUTTON EVENTS
+========================================================= */
+
+openSurprise.addEventListener(
+  "click",
+  openStory
+);
+
+
+closeStory.addEventListener(
+  "click",
+  closeStoryPanel
+);
+
+
+reopenStory.addEventListener(
+  "click",
+  openStory
+);
+
+
+nextButton.addEventListener(
+  "click",
+  goNext
+);
+
+
+backButton.addEventListener(
+  "click",
+  goBack
+);
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  (event) => {
+
+    if (
+      event.key === "Escape" &&
+      story.classList.contains("open")
+    ) {
+
+      closeStoryPanel();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   INITIAL SETUP
+========================================================= */
+
+setupSnoopyFallbacks();
+
+
+/* =========================================================
+   MUSIC RECOVERY
+========================================================= */
+
+document.addEventListener(
+  "click",
+  () => {
+
+    if (
+      story.classList.contains("open") &&
+      birthdayMusic.paused
+    ) {
+
+      birthdayMusic.volume = 0.55;
+
+      birthdayMusic.play().catch(
+        () => {}
       );
+
+    }
+
+  },
+  {
+    once: false
   }
-
-  .story-intro {
-    font-size: 16px;
-  }
-
-  .letter-body,
-  .wish-text {
-    font-size: 17px;
-
-    line-height: 1.8;
-  }
-
-  .memory-grid {
-    grid-template-columns:
-      repeat(
-        2,
-        minmax(0, 1fr)
-      );
-
-    gap: 22px 13px;
-  }
-
-  .memory-image {
-    height: 160px;
-
-    border-radius: 14px;
-  }
-
-  .memory-item figcaption {
-    font-size: 12px;
-  }
-
-  .cake-scene {
-    transform: scale(0.82);
-
-    margin-top: -5px;
-
-    margin-bottom: -15px;
-  }
-
-  .final-message {
-    font-size: 21px;
-  }
-
-  .final-small {
-    font-size: 16px;
-  }
-
-  .floating-decor {
-    opacity: 0.6;
-  }
-
-  .story-bubble {
-    opacity: 0.6;
-  }
-}
-
-
-@media (max-width: 430px) {
-
-  .memory-grid {
-    grid-template-columns:
-      1fr 1fr;
-  }
-
-  .memory-image {
-    height: 135px;
-  }
-
-  .story-navigation {
-    gap: 8px;
-  }
-
-  .text-button {
-    font-size: 15px;
-  }
-
-  .main-button.small {
-    padding:
-      12px 18px;
-  }
-
-  .progress {
-    gap: 7px;
-
-    font-size: 11px;
-  }
-
-  .progress-line {
-    width: 65px;
-  }
-
-  .icon-button {
-    width: 43px;
-    height: 43px;
-
-    font-size: 25px;
-  }
-}
-
-
-/* =====================================================
-   REDUCED MOTION
-===================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-  }
-}
+);
