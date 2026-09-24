@@ -6,13 +6,114 @@
 
   <title>Untuk Bebe — 21 September 2026</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
   <!-- =========================
-       BACKGROUND DECORATION
+       OPENING SURPRISE
+  ========================= -->
+
+  <div id="openingScreen" class="opening-screen">
+
+    <div class="opening-sparkles"></div>
+    <div class="opening-particles"></div>
+
+    <div class="opening-content">
+
+      <p class="opening-small">
+        sedikit sesuatu sebelum masuk...
+      </p>
+
+      <h1 class="opening-title">
+        Untuk Bebe
+      </h1>
+
+      <p class="opening-question">
+        Tapi sebelum itu,<br>
+        jawab satu hal dulu 👀
+      </p>
+
+      <div class="password-box">
+
+        <input
+          id="birthdayPassword"
+          type="password"
+          inputmode="numeric"
+          maxlength="4"
+          placeholder="••••"
+          autocomplete="off"
+          aria-label="Password ulang tahun"
+        >
+
+        <button
+          id="passwordButton"
+          type="button"
+        >
+          Masuk ♡
+        </button>
+
+      </div>
+
+      <p id="passwordMessage" class="password-message"></p>
+
+      <p class="password-hint">
+        ultah kita berduaa 🤍
+      </p>
+
+    </div>
+
+
+    <!-- =========================
+         BIRTHDAY REVEAL
+    ========================= -->
+
+    <div id="birthdayReveal" class="birthday-reveal">
+
+      <div class="celebration-symbols">
+        ✦ ❀ ✧ ♡ ✦ ❀
+      </div>
+
+      <p class="reveal-small reveal-item reveal-1">
+        YAY, kamu ingat!
+      </p>
+
+      <h2 class="reveal-item reveal-2">
+        HAPPY BIRTHDAY
+      </h2>
+
+      <h3 class="reveal-item reveal-3">
+        BEBE! 🎂
+      </h3>
+
+      <p class="reveal-desc reveal-item reveal-4">
+        Ada sesuatu kecil yang aku siapin
+        khusus buat kamu.
+      </p>
+
+      <button
+        id="enterBirthday"
+        class="main-button reveal-item reveal-5"
+        type="button"
+      >
+        Buka kejutan 🎁
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       FLOATING DECOR
   ========================= -->
 
   <div class="floating-decor decor-1">✦</div>
@@ -33,21 +134,16 @@
     <div class="cloud cloud-one"></div>
     <div class="cloud cloud-two"></div>
 
-
-    <!-- soft floating bubbles -->
-
     <div class="bubble bubble-1"></div>
     <div class="bubble bubble-2"></div>
     <div class="bubble bubble-3"></div>
     <div class="bubble bubble-4"></div>
-
 
     <section class="welcome">
 
       <p class="small-note">
         21 September 2026
       </p>
-
 
       <img
         id="welcomeSnoopy"
@@ -57,21 +153,17 @@
         class="snoopy"
       >
 
-
       <p class="tiny-label">
         sedikit kejutan buat kamu
       </p>
-
 
       <h1>
         Hey, Bebe! 🤍
       </h1>
 
-
       <p class="welcome-text">
         Hari ini ada sesuatu kecil yang aku siapin khusus buat kamu.
       </p>
-
 
       <button
         id="openSurprise"
@@ -81,7 +173,6 @@
         Buka kejutan 🎁
       </button>
 
-
       <p class="made-by">
         dibuat dengan sayang oleh Bubu ♡
       </p>
@@ -89,7 +180,6 @@
     </section>
 
   </main>
-
 
 
   <!-- =========================
@@ -102,8 +192,6 @@
     aria-hidden="true"
   >
 
-    <!-- animated background -->
-
     <div class="story-glow story-glow-one"></div>
     <div class="story-glow story-glow-two"></div>
 
@@ -112,21 +200,16 @@
     <div class="story-bubble story-bubble-three"></div>
 
 
-    <!-- =========================
-         STORY TOP
-    ========================= -->
-
     <div class="story-top">
 
       <button
         id="closeStory"
         class="icon-button"
         type="button"
-        aria-label="Tutup"
+        aria-label="Tutup cerita"
       >
         ×
       </button>
-
 
       <div class="progress">
 
@@ -147,21 +230,11 @@
     </div>
 
 
-
-    <!-- =========================
-         STORY CONTENT
-    ========================= -->
-
     <div
       id="storyContent"
       class="story-content"
     ></div>
 
-
-
-    <!-- =========================
-         NAVIGATION
-    ========================= -->
 
     <div class="story-navigation">
 
@@ -172,7 +245,6 @@
       >
         ← Kembali
       </button>
-
 
       <button
         id="nextButton"
@@ -187,9 +259,8 @@
   </section>
 
 
-
   <!-- =========================
-       REOPEN STORY
+       REOPEN
   ========================= -->
 
   <button
@@ -201,7 +272,6 @@
   </button>
 
 
-
   <!-- =========================
        MUSIC
   ========================= -->
@@ -211,14 +281,11 @@
     loop
     preload="auto"
   >
-
     <source
       src="music/song 1 (begin again).mp3"
       type="audio/mpeg"
     >
-
   </audio>
-
 
 
   <script src="script.js"></script>
